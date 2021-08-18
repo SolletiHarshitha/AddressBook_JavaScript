@@ -12,6 +12,7 @@ class Contact{
         this.email = params[7];
     }
 
+    //getter and setter methods
     get firstName() { return this._firstName; }
     set firstName(firstName) { 
         const nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
@@ -90,10 +91,10 @@ class Contact{
          ", Zip : " + this.zip + ", PhoneNumber : " + this.phonenumber + ", Email : " + this.email;
     }
 }
-let addressBookArray = new Array();
+let addressBookArray = new Array(); //Initialising Array
 let end = false;
 while(!end){
-    console.log("1.Add Contact\n2.Display Contact\n3.Edit Contact\n4.Delete Contact\n0.Exit");
+    console.log("1.Add Contact\n2.Display Contact\n3.Edit Contact\n4.Delete Contact\n5.Count of Contacts\n0.Exit");
     let option = parseInt(prompt("Enter your choice : "));
     switch(option){
         case 1:
@@ -124,11 +125,17 @@ while(!end){
             else
             console.log("No Contact exists");
             break;
+        case 5:
+            let totalCount = addressBookArray.reduce(ContactsCount,0);
+            console.log("Total Number of Contacts : "+totalCount);
+            break;
         case 0:
             end = true;
             break;
     }
 }
+
+//Add Contacts
 function AddContact(){
     try{
         let firstName = prompt("Enter First Name :");
@@ -145,9 +152,11 @@ function AddContact(){
         console.error(e);
     } 
 }
+//Display Contact
 function DisplayContact(){
     console.log(addressBookArray);
 }
+//Edit Contact
 function EditContact(contact){
     try{
         console.log("1.Edit Name\n2.Edit Address\n3.Edit PhoneNumber\n4.Edit Email");
@@ -175,7 +184,12 @@ function EditContact(contact){
         console.log(e);
     }
 }
+//Delete Contact
 function DeleteContact(index){
     addressBookArray.splice(index,1);
     console.log("Contact Deleted Successfully!");
+}
+//Count number of Contacts
+function ContactsCount(count){
+    return count+1;
 }
