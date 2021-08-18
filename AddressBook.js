@@ -92,8 +92,6 @@ class Contact{
     }
 }
 let addressBookArray = new Array(); //Initialising Array
-let viewCityMap= new Map();
-let viewStateMap= new Map();
 let end = false;
 while(!end){
     console.log("1.Add Contact\n2.Display Contact\n3.Edit Contact\n4.Delete Contact\n5.Count of Contacts\n6.Search Contact by City or State\n0.Exit");
