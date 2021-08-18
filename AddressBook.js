@@ -94,7 +94,7 @@ class Contact{
 let addressBookArray = new Array(); //Initialising Array
 let end = false;
 while(!end){
-    console.log("1.Add Contact\n2.Display Contact\n3.Edit Contact\n4.Delete Contact\n5.Count of Contacts\n0.Exit");
+    console.log("1.Add Contact\n2.Display Contact\n3.Edit Contact\n4.Delete Contact\n5.Count of Contacts\n6.Search Contact by City or State\n0.Exit");
     let option = parseInt(prompt("Enter your choice : "));
     switch(option){
         case 1:
@@ -141,6 +141,9 @@ while(!end){
             //Calculating the count of countacts
             let totalCount = addressBookArray.reduce(ContactsCount,0);
             console.log("Total Number of Contacts : "+totalCount);
+            break;
+        case 6:
+            SearchByCityOrState();
             break;
         case 0:
             end = true;
@@ -211,4 +214,26 @@ function DeleteContact(index){
 //Count number of Contacts
 function ContactsCount(count){
     return count+1;
+}
+//Search contact by city or state
+function SearchByCityOrState(){
+    try{
+        console.log("1.Search by City\n2.Search by State")
+        let option = parseInt(prompt("Enter an option :"));
+        switch(option){
+            case 1:
+                let cityName =prompt("Enter name of the city :");
+                let contact = addressBookArray.filter(x=>x.city == cityName);
+                console.log(contact);
+                break;
+            case 2:
+                let stateName =prompt("Enter name of the state :");
+                let contact2 = addressBookArray.filter(x=>x.state == stateName);
+                console.log(contact2);
+                break;
+        }
+    }
+    catch(e){
+        console.error(e);
+    }
 }
