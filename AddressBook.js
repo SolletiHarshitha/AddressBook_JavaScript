@@ -94,7 +94,7 @@ class Contact{
 let addressBookArray = new Array(); //Initialising Array
 let end = false;
 while(!end){
-    console.log("1.Add Contact\n2.Display Contact\n3.Edit Contact\n4.Delete Contact\n5.Count of Contacts\n6.Search Contact by City or State\n7.Count Contact By City or State\n0.Exit");
+    console.log("1.Add Contact\n2.Display Contact\n3.Edit Contact\n4.Delete Contact\n5.Count of Contacts\n6.Search Contact by City or State\n7.Count Contact By City or State\n8.Sort by Name\n0.Exit");
     let option = parseInt(prompt("Enter your choice : "));
     switch(option){
         case 1:
@@ -149,6 +149,10 @@ while(!end){
         case 7:
             //Count contacts by city or state
             CountByCityOrState();
+            break;
+        case 8:
+            //Sort by name
+            addressBookArray.sort((contact1,contact2) => (contact1.firstName).localeCompare(contact2.firstName));
             break;
         case 0:
             end = true;
