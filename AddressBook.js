@@ -93,7 +93,7 @@ class Contact{
 let addressBookArray = new Array();
 let end = false;
 while(!end){
-    console.log("1.Add Contact\n2.Display Contact\n0.Exit");
+    console.log("1.Add Contact\n2.Display Contact\n3.Edit Contact\n0.Exit");
     let option = parseInt(prompt("Enter your choice : "));
     switch(option){
         case 1:
@@ -101,6 +101,17 @@ while(!end){
             break;
         case 2:
             DisplayContact();
+            break;
+        case 3:
+            let fname = prompt("Enter First Name :");
+            let lname = prompt("Enter Last Name :");
+            let contact = addressBookArray.find(x=>x.firstName ==fname && x.lastName == lname);
+            if(contact != null){
+                console.log("Contact exists");
+                EditContact(contact);
+            }
+            else
+            console.log("No Contact exists");
             break;
         case 0:
             end = true;
@@ -126,4 +137,30 @@ function AddContact(){
 function DisplayContact(){
     console.log(addressBookArray);
 }
-
+function EditContact(contact){
+    try{
+        console.log("1.Edit Name\n2.Edit Address\n3.Edit PhoneNumber\n4.Edit Email");
+        let option = parseInt(prompt("Choose an option :"));
+        switch(option){
+            case 1:
+                contact.firstName = prompt("Enter First Name :");
+                contact.lastName = prompt("Enter Last Name :");
+                break;
+            case 2:
+                contact.address = prompt("Enter Address :");
+                contact.city = prompt("Enter City :");
+                contact.state = prompt("Enter State :");
+                contact.zip = prompt("Enter Zip :");
+                break;
+            case 3:
+                contact.phonenumber = prompt("Enter PhoneNumber :");
+                break;
+            case 4:
+                contact.email = prompt("Enter Email :");
+                break;
+        }      
+    }
+    catch(e){
+        console.log(e);
+    }
+}
