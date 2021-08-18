@@ -1,4 +1,5 @@
 console.log("AddressBook System");
+var prompt = require('prompt-sync')();
 class Contact{
     constructor(...params){
         this.firstName = params[0];
@@ -89,10 +90,40 @@ class Contact{
          ", Zip : " + this.zip + ", PhoneNumber : " + this.phonenumber + ", Email : " + this.email;
     }
 }
-try{
-    let contact = new Contact("Avani", "Reddy", "KanigiriRoad", "Pamur", "AndhraPradesh", "523108", "91 9393934934", "avani@gmail.com");
-    console.log(contact.toString());
+let addressBookArray = new Array();
+let end = false;
+while(!end){
+    console.log("1.Add Contact\n2.Display Contact\n0.Exit");
+    let option = parseInt(prompt("Enter your choice : "));
+    switch(option){
+        case 1:
+            AddContact();
+            break;
+        case 2:
+            DisplayContact();
+            break;
+        case 0:
+            end = true;
+            break;
+    }
 }
-catch(e){
-    console.error(e);
+function AddContact(){
+    try{
+        let firstName = prompt("Enter First Name :");
+        let lastName = prompt("Enter Last Name :");
+        let address = prompt("Enter Address :");
+        let city = prompt("Enter City :");
+        let state = prompt("Enter State :");
+        let zip = prompt("Enter Zip :");
+        let phonenumber = prompt("Enter Phonenumber :");
+        let email = prompt("Enter Email :");
+        addressBookArray.push(new Contact(firstName, lastName, address, city, state, zip, phonenumber, email));
+    } 
+    catch(e){
+        console.error(e);
+    } 
 }
+function DisplayContact(){
+    console.log(addressBookArray);
+}
+
