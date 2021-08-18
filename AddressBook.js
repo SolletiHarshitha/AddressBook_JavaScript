@@ -94,7 +94,7 @@ class Contact{
 let addressBookArray = new Array(); //Initialising Array
 let end = false;
 while(!end){
-    console.log("1.Add Contact\n2.Display Contact\n3.Edit Contact\n4.Delete Contact\n5.Count of Contacts\n6.Search Contact by City or State\n7.Count Contact By City or State\n8.Sort by Name\n0.Exit");
+    console.log("1.Add Contact\n2.Display Contact\n3.Edit Contact\n4.Delete Contact\n5.Count of Contacts\n6.Search Contact by City or State\n7.Count Contact By City or State\n8.Sort by Name\n9.Sort Contact by City, State or Zip\n0.Exit");
     let option = parseInt(prompt("Enter your choice : "));
     switch(option){
         case 1:
@@ -153,6 +153,10 @@ while(!end){
         case 8:
             //Sort by name
             addressBookArray.sort((contact1,contact2) => (contact1.firstName).localeCompare(contact2.firstName));
+            break;
+        case 9:
+            //Sort by city, state or zip
+            SortContact();
             break;
         case 0:
             end = true;
@@ -266,5 +270,24 @@ function CountByCityOrState(){
     }
     catch(e){
         console.error(e);
+    }
+}
+//Sort by Address
+function SortContact(){
+    console.log("1.Sort by City\n2.Sort by State\n3.Sort by Zip");
+    let option = parseInt(prompt("Enter an option :"));
+    switch(option){
+        case 1:
+            addressBookArray.sort((contact1,contact2) => (contact1.city).localeCompare(contact2.city));
+            DisplayContact();
+            break;
+        case 2:
+            addressBookArray.sort((contact1,contact2) => (contact1.state).localeCompare(contact2.state));
+            DisplayContact();
+            break;
+        case 3:
+            addressBookArray.sort((contact1,contact2) => (contact1.zip).localeCompare(contact2.zip));
+            DisplayContact();
+            break;
     }
 }
