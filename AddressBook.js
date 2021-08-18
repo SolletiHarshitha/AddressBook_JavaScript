@@ -98,12 +98,23 @@ while(!end){
     let option = parseInt(prompt("Enter your choice : "));
     switch(option){
         case 1:
-            AddContact();
+            //Checking the contacts to avoid duplicates
+            let fName = prompt("Enter First Name :");
+            let lName = prompt("Enter Last Name :");
+            let check = ContactExists(fName,lName);
+            if(check == 0){
+                console.log("Contact doesn't exists");
+                AddContact();
+            }
+            else
+            console.log("Contact alrtady exists!");
             break;
         case 2:
+            //Displaying contacts
             DisplayContact();
             break;
         case 3:
+            //Searching the contact by name and editing it
             let fname = prompt("Enter First Name :");
             let lname = prompt("Enter Last Name :");
             let contact = addressBookArray.find(x=>x.firstName ==fname && x.lastName == lname);
@@ -115,6 +126,7 @@ while(!end){
             console.log("No Contact exists");
             break;
         case 4:
+            //Searching the index of the contact by name and deleting it
             let fstname = prompt("Enter First Name :");
             let lstname = prompt("Enter Last Name :");
             let contactIndex = addressBookArray.findIndex(x=>x.firstName ==fstname && x.lastName == lstname);
@@ -126,6 +138,7 @@ while(!end){
             console.log("No Contact exists");
             break;
         case 5:
+            //Calculating the count of countacts
             let totalCount = addressBookArray.reduce(ContactsCount,0);
             console.log("Total Number of Contacts : "+totalCount);
             break;
@@ -135,6 +148,12 @@ while(!end){
     }
 }
 
+//Checking if contact exists
+function ContactExists(fname, lname){
+    let contact = addressBookArray.filter(x=>x.firstName == fname && x.lastName == lname).reduce(ContactsCount,0);
+    if(contact) return 1;
+    else return 0;
+}
 //Add Contacts
 function AddContact(){
     try{
