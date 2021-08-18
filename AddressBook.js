@@ -89,10 +89,17 @@ class Contact{
          ", Zip : " + this.zip + ", PhoneNumber : " + this.phonenumber + ", Email : " + this.email;
     }
 }
+let addressBookArray = new Array();
 try{
-    let contact = new Contact("Avani", "Reddy", "KanigiriRoad", "Pamur", "AndhraPradesh", "523108", "91 9393934934", "avani@gmail.com");
-    console.log(contact.toString());
+    addressBookArray.push(new Contact("Avani", "Reddy", "KanigiriRoad", "Pamur", "AndhraPradesh", "523108", "91 9393934934", "avani@gmail.com"));
 }
 catch(e){
     console.error(e);
 }
+try{
+    addressBookArray.push(new Contact("Ajay", "Kumar", "NelloreRoad", "Pamur", "AndhraPradesh", "523108", "91 9203040450", "ajay@gmail.com"));
+}
+catch(e){
+    console.error(e);
+}
+console.log(addressBookArray);
