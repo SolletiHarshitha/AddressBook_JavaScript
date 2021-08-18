@@ -93,7 +93,7 @@ class Contact{
 let addressBookArray = new Array();
 let end = false;
 while(!end){
-    console.log("1.Add Contact\n2.Display Contact\n3.Edit Contact\n0.Exit");
+    console.log("1.Add Contact\n2.Display Contact\n3.Edit Contact\n4.Delete Contact\n0.Exit");
     let option = parseInt(prompt("Enter your choice : "));
     switch(option){
         case 1:
@@ -109,6 +109,17 @@ while(!end){
             if(contact != null){
                 console.log("Contact exists");
                 EditContact(contact);
+            }
+            else
+            console.log("No Contact exists");
+            break;
+        case 4:
+            let fstname = prompt("Enter First Name :");
+            let lstname = prompt("Enter Last Name :");
+            let contactIndex = addressBookArray.findIndex(x=>x.firstName ==fstname && x.lastName == lstname);
+            if(contactIndex != -1){
+                console.log("Contact exists");
+                DeleteContact(contactIndex);
             }
             else
             console.log("No Contact exists");
@@ -163,4 +174,8 @@ function EditContact(contact){
     catch(e){
         console.log(e);
     }
+}
+function DeleteContact(index){
+    addressBookArray.splice(index,1);
+    console.log("Contact Deleted Successfully!");
 }
