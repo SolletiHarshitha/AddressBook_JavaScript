@@ -94,7 +94,7 @@ class Contact{
 let addressBookArray = new Array(); //Initialising Array
 let end = false;
 while(!end){
-    console.log("1.Add Contact\n2.Display Contact\n3.Edit Contact\n4.Delete Contact\n5.Count of Contacts\n6.Search Contact by City or State\n0.Exit");
+    console.log("1.Add Contact\n2.Display Contact\n3.Edit Contact\n4.Delete Contact\n5.Count of Contacts\n6.Search Contact by City or State\n7.Count Contact By City or State\n0.Exit");
     let option = parseInt(prompt("Enter your choice : "));
     switch(option){
         case 1:
@@ -145,6 +145,10 @@ while(!end){
         case 6:
             //Searching and Viewing the contact
             SearchByCityOrState();
+            break;
+        case 7:
+            //Count contacts by city or state
+            CountByCityOrState();
             break;
         case 0:
             end = true;
@@ -231,6 +235,28 @@ function SearchByCityOrState(){
                 let stateName =prompt("Enter name of the state :");
                 let contact2 = addressBookArray.filter(x=>x.state == stateName);
                 console.log(contact2);
+                break;
+        }
+    }
+    catch(e){
+        console.error(e);
+    }
+}
+//Count of Contacts by City or State
+function CountByCityOrState(){
+    try{
+        console.log("1.Count by City\n2.Count by State")
+        let option = parseInt(prompt("Enter an option :"));
+        switch(option){
+            case 1:
+                let cityName =prompt("Enter name of the city :");
+                let contact = addressBookArray.filter(x=>x.city == cityName).reduce(ContactsCount,0);
+                console.log("Count of Contacts in "+cityName+" is : "+contact);
+                break;
+            case 2:
+                let stateName =prompt("Enter name of the state :");
+                let contact2 = addressBookArray.filter(x=>x.state == stateName).reduce(ContactsCount,0);
+                console.log("Count of Contacts in "+stateName+" is : "+contact2);
                 break;
         }
     }
